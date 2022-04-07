@@ -92,4 +92,16 @@ public class UserController {
         }
     }
 
+    @ApiOperation(value = "更改用户密码")
+    @PutMapping("/updatePasswordById")
+    public ResponseVO updatePasswordById(@RequestParam(value = "userId") Long userId,
+                                         @RequestParam(value = "password") String password) {
+        try {
+            return ResponseVO.buildSuccess(userService.updatePasswordById(userId, password));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseVO.buildFailure(UPDATE_ERROR);
+        }
+    }
+
 }

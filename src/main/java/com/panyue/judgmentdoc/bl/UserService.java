@@ -59,4 +59,13 @@ public interface UserService {
      */
     int updateUserInfoById(Long userId, User user);
 
+    /**
+     * 根据用户id更新密码
+     *
+     * @param userId   用户id
+     * @param password 新密码
+     * @return int 是否成功更改
+     */
+    int updatePasswordById(Long userId, String password);
+
 }

@@ -32,6 +32,12 @@
         where id = #{id}
     </update>
 
+    <update id="updatePasswordById">
+        update user
+        set password=#{password}
+        where id = #{userId}
+    </update>
+
     <resultMap id="User" type="com.panyue.judgmentdoc.po.User">
         <id column="id" property="id"></id>
         <result column="username" property="username"></result>

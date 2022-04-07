@@ -54,4 +54,13 @@ public interface UserMapper {
      */
     int updateUserInfoById(@Param(value = "user") User user);
 
+    /**
+     * 根据用户id更新密码
+     *
+     * @param userId   用户id
+     * @param password 新密码
+     * @return int 是否成功更改
+     */
+    int updatePasswordById(@Param(value = "userId") Long userId, @Param(value = "password") String password);
+
 }
