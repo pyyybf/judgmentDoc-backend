@@ -37,4 +37,13 @@ public interface UserMapper {
      */
     User getUserInfoById(@Param(value = "id") Long id);
 
+    /**
+     * 根据用户id更新头像
+     *
+     * @param userId 用户id
+     * @param avatar 头像
+     * @return int 是否成功更新
+     */
+    int updateAvatarById(@Param(value = "userId") Long userId, @Param(value = "avatar") String avatar);
+
 }

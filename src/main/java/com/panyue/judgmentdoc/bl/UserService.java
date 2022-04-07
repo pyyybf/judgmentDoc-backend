@@ -1,9 +1,11 @@
 package com.panyue.judgmentdoc.bl;
 
+import com.panyue.judgmentdoc.exception.FileException;
 import com.panyue.judgmentdoc.exception.LoginException;
 import com.panyue.judgmentdoc.exception.RegisterException;
 import com.panyue.judgmentdoc.po.User;
 import com.panyue.judgmentdoc.vo.UserVO;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * @author: panyue
@@ -37,5 +39,15 @@ public interface UserService {
      * @return User 用户信息
      */
     User getUserInfoById(Long userId);
+
+    /**
+     * 根据用户id更改头像
+     *
+     * @param userId 用户id
+     * @param file   头像文件
+     * @return int 是否成功更改
+     * @throws FileException 文件异常
+     */
+    int updateAvatarById(Long userId, MultipartFile file) throws FileException;
 
 }

@@ -19,6 +19,12 @@
         where id = #{id}
     </select>
 
+    <update id="updateAvatarById">
+        update user
+        set avatar=#{avatar}
+        where id = #{userId}
+    </update>
+
     <resultMap id="User" type="com.panyue.judgmentdoc.po.User">
         <id column="id" property="id"></id>
         <result column="username" property="username"></result>

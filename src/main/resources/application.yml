@@ -26,3 +26,4 @@ aliyun:
     prefix: http://pyyybf.oss-cn-shanghai.aliyuncs.com/
     directory:
       root: judgmentDoc/
+      avatar: avatars/

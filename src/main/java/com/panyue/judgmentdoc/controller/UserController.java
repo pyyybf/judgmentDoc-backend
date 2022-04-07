@@ -1,6 +1,7 @@
 package com.panyue.judgmentdoc.controller;
 
 import com.panyue.judgmentdoc.bl.UserService;
+import com.panyue.judgmentdoc.exception.FileException;
 import com.panyue.judgmentdoc.exception.LoginException;
 import com.panyue.judgmentdoc.exception.RegisterException;
 import com.panyue.judgmentdoc.po.User;
@@ -9,6 +10,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * @author: panyue
@@ -22,6 +24,7 @@ public class UserController {
     private static final String LOGIN_ERROR = "登录失败";
     private static final String REGISTER_ERROR = "注册失败";
     private static final String USER_INFO_FETCH_ERROR = "个人信息获取失败";
+    private static final String UPDATE_ERROR = "更改失败";
 
     @Autowired
     UserService userService;
@@ -61,6 +64,20 @@ public class UserController {
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseVO.buildFailure(USER_INFO_FETCH_ERROR);
+        }
+    }
+
+    @ApiOperation(value = "更改用户头像")
+    @PutMapping("/updateAvatarById")
+    public ResponseVO updateAvatarById(@RequestParam(value = "userId") Long userId,
+                                       @RequestParam(value = "file") MultipartFile file) {
+        try {
+            return ResponseVO.buildSuccess(userService.updateAvatarById(userId, file));
+        } catch (FileException fileException) {
+            return ResponseVO.buildFailure(fileException.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseVO.buildFailure(UPDATE_ERROR);
         }
     }
 
