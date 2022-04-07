@@ -3,3 +3,9 @@ spring:
     url: jdbc:mysql://localhost:3306/JudgmentDoc?useSSL=false&rewriteBatchedStatements=true&serverTimezone=GMT%2B8&allowPublicKeyRetrieval=true&characterEncoding=utf-8
     username: root
     password: root
+
+directory:
+  static:
+    fonts:
+      simsun: D:/judgmentDoc/backend/src/main/resources/static/fonts/simsun.ttc,1
+  temporary: D:/judgmentDoc/backend/src/main/resources/temporary/
