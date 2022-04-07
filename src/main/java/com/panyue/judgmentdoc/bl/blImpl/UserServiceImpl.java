@@ -5,6 +5,7 @@ import com.panyue.judgmentdoc.bl.UserService;
 import com.panyue.judgmentdoc.data.UserMapper;
 import com.panyue.judgmentdoc.exception.FileException;
 import com.panyue.judgmentdoc.exception.LoginException;
+import com.panyue.judgmentdoc.exception.PasswordException;
 import com.panyue.judgmentdoc.exception.RegisterException;
 import com.panyue.judgmentdoc.po.User;
 import com.panyue.judgmentdoc.vo.UserVO;
@@ -27,6 +28,7 @@ public class UserServiceImpl implements UserService {
     private static final String WRONG_PWD = "密码错误";
     private static final String USERNAME_EXIST = "用户名已存在";
     private static final String EMPTY_FILE = "文件为空";
+    private static final String WRONG_OLD_PWD = "原密码错误";
 
     @Value("${aliyun.oss.directory.avatars}")
     private String DIRECTORY_AVATARS;
@@ -82,8 +84,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int updatePasswordById(Long userId, String password) {
-        return userMapper.updatePasswordById(userId, password);
+    public int updatePasswordById(Long userId, String password, String newPassword) throws PasswordException {
+        User user = userMapper.getUserById(userId);
+        if (user.getPassword().equals(password)) {
+            return userMapper.updatePasswordById(userId, password);
+        }
+        throw new PasswordException(WRONG_OLD_PWD);
     }
 
 }

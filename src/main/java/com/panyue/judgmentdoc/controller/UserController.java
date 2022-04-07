@@ -3,6 +3,7 @@ package com.panyue.judgmentdoc.controller;
 import com.panyue.judgmentdoc.bl.UserService;
 import com.panyue.judgmentdoc.exception.FileException;
 import com.panyue.judgmentdoc.exception.LoginException;
+import com.panyue.judgmentdoc.exception.PasswordException;
 import com.panyue.judgmentdoc.exception.RegisterException;
 import com.panyue.judgmentdoc.po.User;
 import com.panyue.judgmentdoc.vo.ResponseVO;
@@ -93,11 +94,14 @@ public class UserController {
     }
 
     @ApiOperation(value = "更改用户密码")
-    @PutMapping("/updatePasswordById")
-    public ResponseVO updatePasswordById(@RequestParam(value = "userId") Long userId,
-                                         @RequestParam(value = "password") String password) {
+    @PutMapping("/updatePasswordById/{userId}")
+    public ResponseVO updatePasswordById(@PathVariable(value = "userId") Long userId,
+                                         @RequestParam(value = "password") String password,
+                                         @RequestParam(value = "newPassword") String newPassword) {
         try {
-            return ResponseVO.buildSuccess(userService.updatePasswordById(userId, password));
+            return ResponseVO.buildSuccess(userService.updatePasswordById(userId, password, newPassword));
+        } catch (PasswordException passwordException) {
+            return ResponseVO.buildFailure(passwordException.getMessage());
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseVO.buildFailure(UPDATE_ERROR);

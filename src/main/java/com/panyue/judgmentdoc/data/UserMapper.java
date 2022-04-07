@@ -63,4 +63,12 @@ public interface UserMapper {
      */
     int updatePasswordById(@Param(value = "userId") Long userId, @Param(value = "password") String password);
 
+    /**
+     * 根据用户id获取用户
+     *
+     * @param userId 用户id
+     * @return User 用户
+     */
+    User getUserById(@Param(value = "userId") Long userId);
+
 }

@@ -2,6 +2,7 @@ package com.panyue.judgmentdoc.bl;
 
 import com.panyue.judgmentdoc.exception.FileException;
 import com.panyue.judgmentdoc.exception.LoginException;
+import com.panyue.judgmentdoc.exception.PasswordException;
 import com.panyue.judgmentdoc.exception.RegisterException;
 import com.panyue.judgmentdoc.po.User;
 import com.panyue.judgmentdoc.vo.UserVO;
@@ -62,10 +63,12 @@ public interface UserService {
     /**
      * 根据用户id更新密码
      *
-     * @param userId   用户id
-     * @param password 新密码
+     * @param userId      用户id
+     * @param password    原密码
+     * @param newPassword 新密码
      * @return int 是否成功更改
+     * @throws PasswordException 密码异常
      */
-    int updatePasswordById(Long userId, String password);
+    int updatePasswordById(Long userId, String password, String newPassword) throws PasswordException;
 
 }

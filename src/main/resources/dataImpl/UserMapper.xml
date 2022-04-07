@@ -38,6 +38,12 @@
         where id = #{userId}
     </update>
 
+    <select id="getUserById" resultMap="User">
+        select *
+        from user
+        where id = #{userId}
+    </select>
+
     <resultMap id="User" type="com.panyue.judgmentdoc.po.User">
         <id column="id" property="id"></id>
         <result column="username" property="username"></result>
