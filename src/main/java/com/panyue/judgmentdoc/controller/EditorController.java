@@ -22,8 +22,6 @@ import javax.servlet.http.HttpServletResponse;
 @Api(tags = "EditorController", description = "裁判文书编辑管理")
 public class EditorController {
 
-    private final static String EXPORT_ERROR = "导出文件失败";
-
     @Autowired
     EditorService editorService;
 
