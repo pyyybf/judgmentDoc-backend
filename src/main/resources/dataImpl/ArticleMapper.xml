@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.panyue.judgmentdoc.data.ArticleMapper">
+
+    <select id="getAll" resultMap="Article">
+        select *
+        from article
+        <where>
+            <if test="keyword!=null and keyword!=''">
+                content like concat(concat('%',#{keyword}),'%')
+            </if>
+            <if test="number!=null and number!=''">
+                and number like concat(concat('%',#{number}),'%')
+            </if>
+            <if test="crime!=null and crime!=''">
+                and crime like concat(concat('%',#{crime}),'%')
+            </if>
+            <if test="catalogs != null and catalogs.size() > 0">
+                and catalog_id in
+                <foreach collection="catalogs" item="catalog" index="index" open="(" separator="," close=")">
+                    #{catalog}
+                </foreach>
+            </if>
+        </where>
+    </select>
+
+    <resultMap id="Article" type="com.panyue.judgmentdoc.po.Article">
+        <id column="id" property="id"></id>
+        <result column="content" property="content"></result>
+        <result column="number" property="number"></result>
+        <result column="crime" property="crime"></result>
+        <result column="catalog_id" property="catalogId"></result>
+        <result column="law" property="law"></result>
+    </resultMap>
+
+</mapper>
