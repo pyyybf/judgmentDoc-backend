@@ -1,5 +1,6 @@
 package com.panyue.judgmentdoc.bl;
 
+import com.panyue.judgmentdoc.po.Document;
 import com.panyue.judgmentdoc.vo.PageVO;
 import com.panyue.judgmentdoc.vo.TreeVO;
 
@@ -34,5 +35,13 @@ public interface DocumentService {
      * @return List<TreeVO>
      */
     List<TreeVO> getCatalogue();
+
+    /**
+     * 根据id获取文书
+     *
+     * @param id 文书id
+     * @return Document 文书
+     */
+    Document getDocumentById(Long id);
 
 }

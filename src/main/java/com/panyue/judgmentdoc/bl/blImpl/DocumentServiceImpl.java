@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.panyue.judgmentdoc.bl.DocumentService;
 import com.panyue.judgmentdoc.data.DocumentMapper;
 import com.panyue.judgmentdoc.po.Catalog;
+import com.panyue.judgmentdoc.po.Document;
 import com.panyue.judgmentdoc.util.TreeUtil;
 import com.panyue.judgmentdoc.vo.PageVO;
 import com.panyue.judgmentdoc.vo.TreeVO;
@@ -47,6 +48,13 @@ public class DocumentServiceImpl implements DocumentService {
             catalogs.add(new TreeVO(catalog));
         }
         return TreeUtil.buildTree(catalogs);
+    }
+
+    @Override
+    public Document getDocumentById(Long id) {
+        Document document = documentMapper.getDocumentById(id);
+        document.setMembers(documentMapper.getMembersByDocumentId(id));
+        return document;
     }
 
 }

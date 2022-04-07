@@ -2,6 +2,7 @@ package com.panyue.judgmentdoc.data;
 
 import com.panyue.judgmentdoc.po.Catalog;
 import com.panyue.judgmentdoc.po.Document;
+import com.panyue.judgmentdoc.po.Member;
 import org.apache.ibatis.annotations.Param;
 import org.mapstruct.Mapper;
 import org.springframework.stereotype.Repository;
@@ -43,5 +44,21 @@ public interface DocumentMapper {
      * @return List<Catalog> 目录列表
      */
     List<Catalog> getAllCatalog();
+
+    /**
+     * 根据id获取文书
+     *
+     * @param id 文书id
+     * @return Document 文书
+     */
+    Document getDocumentById(Long id);
+
+    /**
+     * 根据文书id获取成员列表
+     *
+     * @param documentId 文书id
+     * @return List<Member> 成员列表
+     */
+    List<Member> getMembersByDocumentId(Long documentId);
 
 }

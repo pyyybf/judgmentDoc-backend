@@ -5,10 +5,7 @@ import com.panyue.judgmentdoc.vo.ResponseVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 import java.util.List;
@@ -54,6 +51,17 @@ public class DocumentController {
     public ResponseVO getCatalogue() {
         try {
             return ResponseVO.buildSuccess(documentService.getCatalogue());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseVO.buildFailure(GET_ERROR);
+        }
+    }
+
+    @ApiOperation(value = "获取单条文书详情")
+    @GetMapping("/get/{id}")
+    public ResponseVO getDocumentById(@PathVariable("id") Long id) {
+        try {
+            return ResponseVO.buildSuccess(documentService.getDocumentById(id));
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseVO.buildFailure(GET_ERROR);
