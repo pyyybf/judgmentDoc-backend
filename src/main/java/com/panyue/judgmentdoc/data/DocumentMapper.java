@@ -3,8 +3,8 @@ package com.panyue.judgmentdoc.data;
 import com.panyue.judgmentdoc.po.Catalog;
 import com.panyue.judgmentdoc.po.Document;
 import com.panyue.judgmentdoc.po.Member;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.mapstruct.Mapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.Date;

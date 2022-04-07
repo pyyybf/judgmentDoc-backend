@@ -9,8 +9,8 @@
     </select>
 
     <insert id="insertUser" parameterType="com.panyue.judgmentdoc.po.User" useGeneratedKeys="true" keyProperty="id">
-        insert into user(username, password, phone, email, role, avatar)
-        values (#{username}, #{password}, #{phone}, #{email}, #{role}, #{avatar})
+        insert into user(username, password, phone, email, role)
+        values (#{username}, #{password}, #{phone}, #{email}, #{role})
     </insert>
 
     <select id="getUserInfoById" resultMap="User">

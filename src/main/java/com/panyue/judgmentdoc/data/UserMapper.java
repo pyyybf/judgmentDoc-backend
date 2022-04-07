@@ -27,7 +27,7 @@ public interface UserMapper {
      * @param user 用户
      * @return Long 新增user的id
      */
-    Long insertUser(@Param(value = "user") User user);
+    Long insertUser(User user);
 
     /**
      * 根据id获取用户信息
@@ -52,7 +52,7 @@ public interface UserMapper {
      * @param user 用户信息
      * @return int 是否成功更新
      */
-    int updateUserInfoById(@Param(value = "user") User user);
+    int updateUserInfoById(User user);
 
     /**
      * 根据用户id更新密码
