@@ -1,6 +1,7 @@
 package com.panyue.judgmentdoc.bl;
 
 import com.panyue.judgmentdoc.vo.PageVO;
+import com.panyue.judgmentdoc.vo.TreeVO;
 
 import java.util.List;
 
@@ -22,5 +23,12 @@ public interface ArticleService {
      * @return PageVO 分页信息
      */
     PageVO getAll(String keyword, String number, String crime, List<Long> catalogs, Integer pageNum, Integer pageSize);
+
+    /**
+     * 获取目录树节点列表
+     *
+     * @return List<TreeVO>
+     */
+    List<TreeVO> getCatalogue();
 
 }

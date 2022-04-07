@@ -1,6 +1,7 @@
 package com.panyue.judgmentdoc.data;
 
 import com.panyue.judgmentdoc.po.Article;
+import com.panyue.judgmentdoc.po.Catalog;
 import org.apache.ibatis.annotations.Param;
 import org.mapstruct.Mapper;
 import org.springframework.stereotype.Repository;
@@ -28,5 +29,12 @@ public interface ArticleMapper {
                          @Param(value = "number") String number,
                          @Param(value = "crime") String crime,
                          @Param(value = "catalogs") List<Long> catalogs);
+
+    /**
+     * 获取法条目录列表
+     *
+     * @return List<Catalog> 目录列表
+     */
+    List<Catalog> getAllCatalog();
 
 }
