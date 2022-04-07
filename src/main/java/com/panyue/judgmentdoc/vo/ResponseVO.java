@@ -21,6 +21,9 @@ public class ResponseVO<T> {
      */
     private T content;
 
+    /**
+     * 调用成功，返回响应信息
+     */
     public static <T> ResponseVO<T> buildSuccess(T content) {
         ResponseVO<T> response = new ResponseVO<T>();
         response.setContent(content);
@@ -28,6 +31,9 @@ public class ResponseVO<T> {
         return response;
     }
 
+    /**
+     * 调用失败，返回响应信息
+     */
     public static <T> ResponseVO<T> buildFailure(String message) {
         ResponseVO<T> response = new ResponseVO<T>();
         response.setSuccess(false);
