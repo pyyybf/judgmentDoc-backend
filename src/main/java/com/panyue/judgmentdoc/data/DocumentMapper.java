@@ -51,7 +51,7 @@ public interface DocumentMapper {
      * @param id 文书id
      * @return Document 文书
      */
-    Document getDocumentById(Long id);
+    Document getDocumentById(@Param(value = "id") Long id);
 
     /**
      * 根据文书id获取成员列表
@@ -59,7 +59,7 @@ public interface DocumentMapper {
      * @param documentId 文书id
      * @return List<Member> 成员列表
      */
-    List<Member> getMembersByDocumentId(Long documentId);
+    List<Member> getMembersByDocumentId(@Param(value = "documentId") Long documentId);
 
     /**
      * 根据用户id获取文书列表
@@ -67,6 +67,6 @@ public interface DocumentMapper {
      * @param userId 用户id
      * @return List<Document> 文书列表
      */
-    List<Document> getDocumentsByUserId(Long userId);
+    List<Document> getDocumentsByUserId(@Param(value = "userId") Long userId);
 
 }
