@@ -8,9 +8,21 @@ import com.panyue.judgmentdoc.po.User;
  */
 public class UserVO {
 
+    /**
+     * 用户id
+     */
     private Long userId;
+    /**
+     * 用户名
+     */
     private String username;
+    /**
+     * 身份
+     */
     private int role;
+    /**
+     * 头像
+     */
     private String avatar;
 
     public UserVO() {

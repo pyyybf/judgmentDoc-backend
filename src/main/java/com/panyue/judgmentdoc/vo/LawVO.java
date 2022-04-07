@@ -7,7 +7,9 @@ import com.panyue.judgmentdoc.po.Article;
  * @create: 2022-04-08
  */
 public class LawVO extends TextVO {
-
+    /**
+     * 对应法条
+     */
     private Article article;
 
     public LawVO() {

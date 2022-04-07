@@ -12,11 +12,29 @@ import java.util.List;
  */
 public class DocInfoVO {
 
+    /**
+     * 正文
+     */
     private String content;
+    /**
+     * 经办法庭名称
+     */
     private String courtName;
+    /**
+     * 文书名称
+     */
     private String name;
+    /**
+     * 案号
+     */
     private String number;
+    /**
+     * 日期
+     */
     private String date;
+    /**
+     * 参与成员列表
+     */
     private List<Member> members;
 
     public DocInfoVO() {
