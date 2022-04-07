@@ -16,4 +16,12 @@ public interface EditorService {
      */
     String exportPdf(DocInfoVO docInfoVO);
 
+    /**
+     * 导出文书为word文件
+     *
+     * @param docInfoVO 文书信息
+     * @return String 临时pdf文件路径
+     */
+    String exportWord(DocInfoVO docInfoVO);
+
 }
