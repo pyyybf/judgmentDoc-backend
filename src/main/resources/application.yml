@@ -4,3 +4,7 @@ spring:
     active: dev #???????
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
+
+server:
+  max-http-header-size: 102400
+  port: 8001
