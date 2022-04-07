@@ -24,6 +24,11 @@
         </where>
     </select>
 
+    <select id="getAllCatalog" resultMap="Catalog">
+        select *
+        from article_catalog
+    </select>
+
     <resultMap id="Article" type="com.panyue.judgmentdoc.po.Article">
         <id column="id" property="id"></id>
         <result column="content" property="content"></result>
@@ -31,6 +36,11 @@
         <result column="crime" property="crime"></result>
         <result column="catalog_id" property="catalogId"></result>
         <result column="law" property="law"></result>
+    </resultMap>
+    <resultMap id="Catalog" type="com.panyue.judgmentdoc.po.Catalog">
+        <id column="id" property="id"></id>
+        <result column="name" property="name"></result>
+        <result column="parent_id" property="parentId"></result>
     </resultMap>
 
 </mapper>
