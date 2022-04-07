@@ -8,3 +8,8 @@ spring:
 server:
   max-http-header-size: 102400
   port: 8001
+
+mybatis:
+  mapper-locations: classpath:dataImpl/*Mapper.xml
+  configuration:
+    map-underscore-to-camel-case: true
