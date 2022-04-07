@@ -18,9 +18,9 @@ public interface ArticleMapper {
     /**
      * 根据条件获取法条列表
      *
-     * @param keyword 关键词
-     * @param number 条目
-     * @param crime 主旨
+     * @param keyword  关键词
+     * @param number   条目
+     * @param crime    主旨
      * @param catalogs 符合条件的目录id列表
      * @return List<Article> 法条列表
      */
