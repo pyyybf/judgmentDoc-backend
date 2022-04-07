@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 @Api(tags = "UserController", description = "用户信息管理")
 public class UserController {
 
-    private static final String LOGIN_ERROR = "登录出错";
+    private static final String LOGIN_ERROR = "登录失败";
 
     @Autowired
     UserService userService;
