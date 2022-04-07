@@ -27,6 +27,6 @@ public interface UserMapper {
      * @param user 用户
      * @return Long 新增user的id
      */
-    Long insertUser(User user);
+    Long insertUser(@Param(value = "user") User user);
 
 }
