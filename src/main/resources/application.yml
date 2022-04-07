@@ -1,7 +1,7 @@
 spring:
-  #?? dev:????|prod:????
+  #环境 dev:开发环境|prod:生产环境
   profiles:
-    active: dev #???????
+    active: dev #激活的配置文件
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
 
@@ -13,3 +13,16 @@ mybatis:
   mapper-locations: classpath:dataImpl/*Mapper.xml
   configuration:
     map-underscore-to-camel-case: true
+
+aliyun:
+  oss:
+    endpoint: oss-cn-shanghai.aliyuncs.com
+    access-key-id: LTAI4G3YDVKD453rLQRPeAQj # 访问身份验证中用到用户标识
+    access-key-secret: zHDmPtPZ6lzTfHWIuMnxdrYvEcSkHM # 用户用于加密签名字符串和oss用来验证签名字符串的密钥
+    bucket-name: pyyybf # oss的存储空间
+    policy:
+      expire: 300 # 签名有效期(S)
+    max-size: 10 # 上传文件大小限制(M)
+    prefix: http://pyyybf.oss-cn-shanghai.aliyuncs.com/
+    directory:
+      root: judgmentDoc/
