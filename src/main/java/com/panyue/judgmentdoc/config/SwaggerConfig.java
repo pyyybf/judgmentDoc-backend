@@ -22,7 +22,7 @@ public class SwaggerConfig {
     public Docket createResApi() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
-                .select().apis(RequestHandlerSelectors.basePackage("com.example.judgmentdoc.controller"))
+                .select().apis(RequestHandlerSelectors.basePackage("com.panyue.judgmentdoc.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }
