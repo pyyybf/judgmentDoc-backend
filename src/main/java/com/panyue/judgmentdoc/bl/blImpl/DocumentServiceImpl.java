@@ -57,4 +57,10 @@ public class DocumentServiceImpl implements DocumentService {
         return document;
     }
 
+    @Override
+    public PageVO getDocumentsByUserId(Long userId, Integer pageNum, Integer pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        return PageVO.restPage(documentMapper.getDocumentsByUserId(userId));
+    }
+
 }

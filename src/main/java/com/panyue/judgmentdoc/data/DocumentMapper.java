@@ -61,4 +61,12 @@ public interface DocumentMapper {
      */
     List<Member> getMembersByDocumentId(Long documentId);
 
+    /**
+     * 根据用户id获取文书列表
+     *
+     * @param userId 用户id
+     * @return List<Document> 文书列表
+     */
+    List<Document> getDocumentsByUserId(Long userId);
+
 }

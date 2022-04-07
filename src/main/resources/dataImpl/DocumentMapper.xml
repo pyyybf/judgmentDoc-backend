@@ -50,6 +50,12 @@
         where document_id = #{documentId}
     </select>
 
+    <select id="getDocumentsByUserId" resultMap="Document">
+        select *
+        from document
+        where user_id = #{userId}
+    </select>
+
     <resultMap id="Document" type="com.panyue.judgmentdoc.po.Document">
         <id column="id" property="id"></id>
         <result column="court_name" property="courtName"></result>

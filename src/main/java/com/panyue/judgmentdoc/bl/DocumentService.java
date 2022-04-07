@@ -44,4 +44,14 @@ public interface DocumentService {
      */
     Document getDocumentById(Long id);
 
+    /**
+     * 根据用户id分页获取文书列表
+     *
+     * @param userId   用户id
+     * @param pageNum  页码
+     * @param pageSize 页面显示条数
+     * @return PageVO 分页信息
+     */
+    PageVO getDocumentsByUserId(Long userId, Integer pageNum, Integer pageSize);
+
 }

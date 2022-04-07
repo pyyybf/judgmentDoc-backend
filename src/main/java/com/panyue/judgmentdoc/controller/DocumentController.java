@@ -68,4 +68,17 @@ public class DocumentController {
         }
     }
 
+    @ApiOperation(value = "根据用户id分页查询裁判文书")
+    @GetMapping("/getDocumentsByUserId/{userId}")
+    public ResponseVO getDocumentsByUserId(@PathVariable(value = "userId") Long userId,
+                                           @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
+                                           @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize) {
+        try {
+            return ResponseVO.buildSuccess(documentService.getDocumentsByUserId(userId, pageNum, pageSize));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseVO.buildFailure(GET_ERROR);
+        }
+    }
+
 }
