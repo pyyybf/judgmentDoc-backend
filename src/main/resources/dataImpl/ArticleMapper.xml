@@ -29,6 +29,21 @@
         from article_catalog
     </select>
 
+    <select id="getArticleById" resultMap="Article">
+        select *
+        from article
+        where id = #{id}
+    </select>
+
+    <select id="getArticleListByIds" resultMap="Article">
+        select *
+        from article
+        where id in
+        <foreach collection="ids" item="id" index="index" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+
     <resultMap id="Article" type="com.panyue.judgmentdoc.po.Article">
         <id column="id" property="id"></id>
         <result column="content" property="content"></result>

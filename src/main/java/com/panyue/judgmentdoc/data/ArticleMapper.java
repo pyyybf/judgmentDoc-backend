@@ -37,4 +37,20 @@ public interface ArticleMapper {
      */
     List<Catalog> getAllCatalog();
 
+    /**
+     * 根据id获取法条
+     *
+     * @param id 法条id
+     * @return Article 法条
+     */
+    Article getArticleById(@Param(value = "id") Long id);
+
+    /**
+     * 根据id列表获取法条列表
+     *
+     * @param ids 法条id列表
+     * @return List<Article> 法条列表
+     */
+    List<Article> getArticleListByIds(@Param(value = "ids") List<Long> ids);
+
 }

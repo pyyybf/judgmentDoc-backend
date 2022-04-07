@@ -118,6 +118,13 @@
             <artifactId>poi-ooxml</artifactId>
             <version>4.1.2</version>
         </dependency>
+
+        <!-- 访问外部接口 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+            <version>3.0.3</version>
+        </dependency>
     </dependencies>
 
     <build>

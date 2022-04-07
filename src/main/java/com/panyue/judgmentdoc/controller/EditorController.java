@@ -3,13 +3,11 @@ package com.panyue.judgmentdoc.controller;
 import com.panyue.judgmentdoc.bl.EditorService;
 import com.panyue.judgmentdoc.util.FileUtil;
 import com.panyue.judgmentdoc.vo.DocInfoVO;
+import com.panyue.judgmentdoc.vo.ResponseVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -21,6 +19,8 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping("/api/editor")
 @Api(tags = "EditorController", description = "裁判文书编辑管理")
 public class EditorController {
+
+    private final static String CHECK_ERROR = "检验失败";
 
     @Autowired
     EditorService editorService;
@@ -46,6 +46,18 @@ public class EditorController {
             FileUtil.delFile(wordPath);
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    @ApiOperation("检验裁判文书")
+    @GetMapping("/check")
+    public ResponseVO check(@RequestParam(value = "text") String text,
+                            @RequestParam(value = "crime", defaultValue = "traffic") String crime) {
+        try {
+            return ResponseVO.buildSuccess(editorService.check(text, crime));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseVO.buildFailure(CHECK_ERROR);
         }
     }
 
