@@ -30,4 +30,12 @@ public interface UserService {
      */
     Long register(User user) throws RegisterException;
 
+    /**
+     * 根据用户id获取用户信息
+     *
+     * @param userId 用户id
+     * @return User 用户信息
+     */
+    User getUserInfoById(Long userId);
+
 }

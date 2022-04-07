@@ -21,6 +21,7 @@ public class UserController {
 
     private static final String LOGIN_ERROR = "登录失败";
     private static final String REGISTER_ERROR = "注册失败";
+    private static final String USER_INFO_FETCH_ERROR = "个人信息获取失败";
 
     @Autowired
     UserService userService;
@@ -49,6 +50,17 @@ public class UserController {
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseVO.buildFailure(REGISTER_ERROR);
+        }
+    }
+
+    @ApiOperation(value = "获取用户个人信息")
+    @GetMapping("/getUserInfoById/{userId}")
+    public ResponseVO getUserInfoById(@PathVariable(value = "userId") Long userId) {
+        try {
+            return ResponseVO.buildSuccess(userService.getUserInfoById(userId));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseVO.buildFailure(USER_INFO_FETCH_ERROR);
         }
     }
 

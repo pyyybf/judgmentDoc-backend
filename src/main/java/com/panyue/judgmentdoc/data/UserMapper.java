@@ -29,4 +29,12 @@ public interface UserMapper {
      */
     Long insertUser(@Param(value = "user") User user);
 
+    /**
+     * 根据id获取用户信息
+     *
+     * @param id 用户id
+     * @return User 用户信息（不含密码）
+     */
+    User getUserInfoById(@Param(value = "id") Long id);
+
 }
