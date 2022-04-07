@@ -3,9 +3,11 @@ package com.panyue.judgmentdoc.bl.blImpl;
 import com.panyue.judgmentdoc.bl.UserService;
 import com.panyue.judgmentdoc.data.UserMapper;
 import com.panyue.judgmentdoc.exception.LoginException;
+import com.panyue.judgmentdoc.exception.RegisterException;
 import com.panyue.judgmentdoc.po.User;
 import com.panyue.judgmentdoc.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
 /**
@@ -17,6 +19,7 @@ public class UserServiceImpl implements UserService {
 
     private static final String USER_NOT_EXIST = "用户不存在";
     private static final String WRONG_PWD = "密码错误";
+    private static final String USERNAME_EXIST = "用户名已存在";
 
     @Autowired
     UserMapper userMapper;
@@ -31,6 +34,15 @@ public class UserServiceImpl implements UserService {
             throw new LoginException(WRONG_PWD);
         }
         throw new LoginException(USER_NOT_EXIST);
+    }
+
+    @Override
+    public Long register(User user) throws RegisterException {
+        try {
+            return userMapper.insertUser(user);
+        } catch (DuplicateKeyException e) {
+            throw new RegisterException(USERNAME_EXIST);
+        }
     }
 
 }

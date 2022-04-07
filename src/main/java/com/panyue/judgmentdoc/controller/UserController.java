@@ -2,6 +2,8 @@ package com.panyue.judgmentdoc.controller;
 
 import com.panyue.judgmentdoc.bl.UserService;
 import com.panyue.judgmentdoc.exception.LoginException;
+import com.panyue.judgmentdoc.exception.RegisterException;
+import com.panyue.judgmentdoc.po.User;
 import com.panyue.judgmentdoc.vo.ResponseVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     private static final String LOGIN_ERROR = "登录失败";
+    private static final String REGISTER_ERROR = "注册失败";
 
     @Autowired
     UserService userService;
@@ -33,6 +36,19 @@ public class UserController {
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseVO.buildFailure(LOGIN_ERROR);
+        }
+    }
+
+    @ApiOperation(value = "注册")
+    @PostMapping("/register")
+    public ResponseVO register(@RequestBody User user) {
+        try {
+            return ResponseVO.buildSuccess(userService.register(user));
+        } catch (RegisterException registerException) {
+            return ResponseVO.buildFailure(registerException.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseVO.buildFailure(REGISTER_ERROR);
         }
     }
 

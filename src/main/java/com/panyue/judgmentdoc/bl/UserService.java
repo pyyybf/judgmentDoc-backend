@@ -1,6 +1,8 @@
 package com.panyue.judgmentdoc.bl;
 
 import com.panyue.judgmentdoc.exception.LoginException;
+import com.panyue.judgmentdoc.exception.RegisterException;
+import com.panyue.judgmentdoc.po.User;
 import com.panyue.judgmentdoc.vo.UserVO;
 
 /**
@@ -18,5 +20,14 @@ public interface UserService {
      * @throws LoginException 登录异常
      */
     UserVO login(String username, String password) throws LoginException;
+
+    /**
+     * 注册
+     *
+     * @param user 新用户
+     * @return Long 新用户id
+     * @throws RegisterException 注册异常
+     */
+    Long register(User user) throws RegisterException;
 
 }

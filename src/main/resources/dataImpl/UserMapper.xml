@@ -8,6 +8,11 @@
         where username = #{username}
     </select>
 
+    <insert id="insertUser" parameterType="com.panyue.judgmentdoc.po.User" useGeneratedKeys="true" keyProperty="id">
+        insert into user(username, password, phone, email, role, avatar)
+        values (#{username}, #{password}, #{phone}, #{email}, #{role}, #{avatar})
+    </insert>
+
     <resultMap id="User" type="com.panyue.judgmentdoc.po.User">
         <id column="id" property="id"></id>
         <result column="username" property="username"></result>

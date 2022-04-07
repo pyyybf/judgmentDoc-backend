@@ -21,4 +21,12 @@ public interface UserMapper {
      */
     User getUserByUsername(@Param(value = "username") String username);
 
+    /**
+     * 插入新用户
+     *
+     * @param user 用户
+     * @return Long 新增user的id
+     */
+    Long insertUser(User user);
+
 }
