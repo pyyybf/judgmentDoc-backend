@@ -75,4 +75,10 @@ public class UserServiceImpl implements UserService {
         return userMapper.updateAvatarById(userId, avatar);
     }
 
+    @Override
+    public int updateUserInfoById(Long userId, User user) {
+        user.setId(userId);
+        return userMapper.updateUserInfoById(user);
+    }
+
 }

@@ -46,4 +46,12 @@ public interface UserMapper {
      */
     int updateAvatarById(@Param(value = "userId") Long userId, @Param(value = "avatar") String avatar);
 
+    /**
+     * 根据用户id更改用户信息
+     *
+     * @param user 用户信息
+     * @return int 是否成功更新
+     */
+    int updateUserInfoById(@Param(value = "user") User user);
+
 }

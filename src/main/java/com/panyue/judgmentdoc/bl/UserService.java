@@ -50,4 +50,13 @@ public interface UserService {
      */
     int updateAvatarById(Long userId, MultipartFile file) throws FileException;
 
+    /**
+     * 根据用户id更改用户信息
+     *
+     * @param userId 用户id
+     * @param user   用户信息
+     * @return int 是否成功更改
+     */
+    int updateUserInfoById(Long userId, User user);
+
 }

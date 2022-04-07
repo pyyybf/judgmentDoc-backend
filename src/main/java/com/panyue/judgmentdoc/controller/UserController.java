@@ -81,4 +81,15 @@ public class UserController {
         }
     }
 
+    @ApiOperation(value = "更改用户个人信息")
+    @PutMapping("/updateUserInfoById/{userId}")
+    public ResponseVO updateUserInfoById(@PathVariable(value = "userId") Long userId, @RequestBody User user) {
+        try {
+            return ResponseVO.buildSuccess(userService.updateUserInfoById(userId, user));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseVO.buildFailure(UPDATE_ERROR);
+        }
+    }
+
 }

@@ -25,6 +25,13 @@
         where id = #{userId}
     </update>
 
+    <update id="updateUserInfoById" parameterType="com.panyue.judgmentdoc.po.User">
+        update user
+        set phone=#{phone},
+            email=#{email}
+        where id = #{id}
+    </update>
+
     <resultMap id="User" type="com.panyue.judgmentdoc.po.User">
         <id column="id" property="id"></id>
         <result column="username" property="username"></result>
