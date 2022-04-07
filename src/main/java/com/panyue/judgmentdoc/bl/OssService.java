@@ -21,7 +21,6 @@ public interface OssService {
      * 删除文件
      *
      * @param fileName 文件路径名称
-     * @return
      */
     void delete(String fileName);
 
