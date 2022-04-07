@@ -1,0 +1,39 @@
+package com.panyue.judgmentdoc.data;
+
+import com.panyue.judgmentdoc.po.Document;
+import org.apache.ibatis.annotations.Param;
+import org.mapstruct.Mapper;
+import org.springframework.stereotype.Repository;
+
+import java.util.Date;
+import java.util.List;
+
+/**
+ * @author: panyue
+ * @create: 2022-04-07
+ */
+@Mapper
+@Repository
+public interface DocumentMapper {
+
+    /**
+     * 根据条件获取文书列表
+     *
+     * @param keyword   关键词
+     * @param courtName 法院名称
+     * @param name      文书名称
+     * @param number    案号
+     * @param startDate 起始日期
+     * @param endDate   结束日期
+     * @param catalogs  符合条件的目录id列表
+     * @return List<Document> 文书列表
+     */
+    List<Document> getAll(@Param(value = "keyword") String keyword,
+                          @Param(value = "courtName") String courtName,
+                          @Param(value = "name") String name,
+                          @Param(value = "number") String number,
+                          @Param(value = "startDate") Date startDate,
+                          @Param(value = "endDate") Date endDate,
+                          @Param(value = "catalogs") List<Long> catalogs);
+
+}
