@@ -1,5 +1,6 @@
 package com.panyue.judgmentdoc.data;
 
+import com.panyue.judgmentdoc.po.Catalog;
 import com.panyue.judgmentdoc.po.Document;
 import org.apache.ibatis.annotations.Param;
 import org.mapstruct.Mapper;
@@ -35,5 +36,12 @@ public interface DocumentMapper {
                           @Param(value = "startDate") Date startDate,
                           @Param(value = "endDate") Date endDate,
                           @Param(value = "catalogs") List<Long> catalogs);
+
+    /**
+     * 获取法条目录列表
+     *
+     * @return List<Catalog> 目录列表
+     */
+    List<Catalog> getAllCatalog();
 
 }

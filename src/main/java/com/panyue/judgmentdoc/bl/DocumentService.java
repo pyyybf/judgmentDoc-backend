@@ -1,6 +1,7 @@
 package com.panyue.judgmentdoc.bl;
 
 import com.panyue.judgmentdoc.vo.PageVO;
+import com.panyue.judgmentdoc.vo.TreeVO;
 
 import java.text.ParseException;
 import java.util.List;
@@ -26,5 +27,12 @@ public interface DocumentService {
      * @return PageVO 分页信息
      */
     PageVO getAll(String keyword, String courtName, String name, String number, String start, String end, List<Long> catalogs, Integer pageNum, Integer pageSize) throws ParseException;
+
+    /**
+     * 获取目录树节点列表
+     *
+     * @return List<TreeVO>
+     */
+    List<TreeVO> getCatalogue();
 
 }

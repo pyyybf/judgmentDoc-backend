@@ -49,4 +49,15 @@ public class DocumentController {
         }
     }
 
+    @ApiOperation(value = "获取树状目录")
+    @GetMapping("/getCatalogue")
+    public ResponseVO getCatalogue() {
+        try {
+            return ResponseVO.buildSuccess(documentService.getCatalogue());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseVO.buildFailure(GET_ERROR);
+        }
+    }
+
 }
