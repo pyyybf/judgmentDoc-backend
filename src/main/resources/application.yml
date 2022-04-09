@@ -1,7 +1,7 @@
 spring:
-  #环境 dev:开发环境|prod:生产环境
+  # 环境 dev:开发环境|prod:生产环境
   profiles:
-    active: dev #激活的配置文件
+    active: dev # 激活的配置文件
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
 
