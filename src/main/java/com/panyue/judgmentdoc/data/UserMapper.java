@@ -71,4 +71,12 @@ public interface UserMapper {
      */
     User getUserById(@Param(value = "userId") Long userId);
 
+    /**
+     * 根据用户id获取头像
+     *
+     * @param id 用户id
+     * @return String 头像图片url
+     */
+    String getAvatarById(@Param(value = "id") Long id);
+
 }

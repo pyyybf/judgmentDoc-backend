@@ -15,6 +15,7 @@ import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.management.remote.rmi._RMIConnection_Stub;
 import java.util.UUID;
 
 /**
@@ -70,6 +71,14 @@ public class UserServiceImpl implements UserService {
         if (file.isEmpty()) {
             throw new FileException(EMPTY_FILE);
         }
+        //删除原头像
+        String[] oldAvatarArr = userMapper.getAvatarById(userId).split("/", 5);
+        String oldAvatar = oldAvatarArr[oldAvatarArr.length - 1];
+        if (!oldAvatar.startsWith("default")) {  //不是默认头像
+            ossService.delete(oldAvatar);
+        }
+
+        //上传新头像并更新数据库
         String originalFileName = file.getOriginalFilename();
         String suffix = originalFileName.substring(originalFileName.lastIndexOf("."));  //文件后缀，例：.png
         String fileName = UUID.randomUUID().toString().replace("-", "") + suffix;  //文件名：uuid去除-后加上后缀
