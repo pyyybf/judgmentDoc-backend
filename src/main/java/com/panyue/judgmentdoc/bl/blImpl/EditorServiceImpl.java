@@ -132,7 +132,10 @@ public class EditorServiceImpl implements EditorService {
                     }
                 } else if ((int) textMap.get("type") == 2) {  //法条
                     curText = new LawVO();
-                    ((LawVO) curText).setArticle(articleMapper.getArticleById(Long.valueOf(textMap.get("articleId").toString())));
+                    Long articleId = Long.parseLong(textMap.get("articleId").toString());
+                    if (articleId != -1) {
+                        ((LawVO) curText).setArticle(articleMapper.getArticleById(articleId));
+                    }
                 } else if ((int) textMap.get("type") == 3) {  //结论
                     curText = new ConclusionVO();
                     ((ConclusionVO) curText).setCount((int) textMap.get("count"));
