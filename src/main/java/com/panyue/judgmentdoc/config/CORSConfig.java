@@ -22,7 +22,7 @@ public class CORSConfig {
         config.setAllowCredentials(true);
         config.addAllowedOrigin("http://localhost:8080");  //本地前端
         config.addAllowedOrigin("http://localhost:8099");  //本地Tomcat
-//        config.addAllowedOrigin("");  //部署前端
+        config.addAllowedOrigin("http://172.29.7.224:8080");  //部署前端
         config.addAllowedHeader(CorsConfiguration.ALL);
         config.addAllowedMethod(CorsConfiguration.ALL);
         source.registerCorsConfiguration("/**", config);
