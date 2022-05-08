@@ -18,7 +18,7 @@ public interface OssService {
     String upload(MultipartFile multipartFile, String fileName);
 
     /**
-     * 删除文件
+     * 删除OSS中存储的文件
      *
      * @param fileName 文件路径名称
      */

@@ -14,7 +14,7 @@ import org.springframework.stereotype.Repository;
 public interface UserMapper {
 
     /**
-     * 根据用户名username获取用户User
+     * 根据用户名获取用户信息
      *
      * @param username 用户名
      * @return User

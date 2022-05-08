@@ -39,7 +39,7 @@ public interface DocumentMapper {
                           @Param(value = "catalogs") List<Long> catalogs);
 
     /**
-     * 获取法条目录列表
+     * 获取文书目录列表
      *
      * @return List<Catalog> 目录列表
      */

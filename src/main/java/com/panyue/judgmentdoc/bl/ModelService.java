@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface ModelService {
 
     /**
-     * 文书检验python模型
+     * 调用文书检验python模型，获取检验结果
      *
      * @param text  正文
      * @param crime 案由
