@@ -3,7 +3,6 @@ package com.panyue.judgmentdoc.bl;
 import com.panyue.judgmentdoc.exception.CheckException;
 import com.panyue.judgmentdoc.vo.DocInfoVO;
 import com.panyue.judgmentdoc.vo.TextVO;
-import org.codehaus.jettison.json.JSONException;
 
 import java.util.List;
 
