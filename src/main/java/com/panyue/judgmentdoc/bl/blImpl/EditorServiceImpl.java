@@ -29,6 +29,12 @@ import java.util.UUID;
 @Service
 public class EditorServiceImpl implements EditorService {
 
+    private final static int FONT_SIZE_NAME = 25;
+    private final static int FONT_SIZE_COURT_NAME = 20;
+    private final static int FONT_SIZE_CONTENT = 15;
+    private final static String FONT_FAMILY_TITLE = "宋体";
+    private final static String FONT_FAMILY_CONTENT = "仿宋";
+
     @Value("${directory.temporary}")
     private String TEMPORARY_PATH;
 
@@ -45,26 +51,24 @@ public class EditorServiceImpl implements EditorService {
             //创建书写器，写入临时文件目录
             String pdfPathName = TEMPORARY_PATH + UUID.randomUUID().toString().replaceAll("-", "") + ".pdf";
             PdfWriter writer = PdfUtil.createPdfWriter(pdfPathName, document);
-            //设置A4
-            document.setPageSize(PageSize.A4);
+
+            document.setPageSize(PageSize.A4);  // 设置页面为A4
+            document.setMargins(90f, 90f, 72f, 72f);  // 页边距
             document.open();
-            //设置法院名
-            PdfUtil.setPdfTitle(docInfoVO.getCourtName(), document);
-            //设置文书名字
-            PdfUtil.setPdfTitle(docInfoVO.getName(), document);
-            //设置案号
-            PdfUtil.setPdfMainBody(docInfoVO.getNumber(), document, Element.ALIGN_RIGHT, 0, 0);
-            //设置正文
+
+            PdfUtil.setPdfParagraph(docInfoVO.getCourtName(), document, FONT_SIZE_COURT_NAME, Element.ALIGN_CENTER, 0, 2);  // 设置法院名
+            PdfUtil.setPdfParagraph(docInfoVO.getName(), document, FONT_SIZE_NAME, Element.ALIGN_CENTER, 0, 2);  // 设置文书名字
+            PdfUtil.setPdfParagraph(docInfoVO.getNumber(), document, FONT_SIZE_CONTENT, Element.ALIGN_RIGHT, 0, 0);  // 设置案号
+            // 设置正文
             String[] contents = docInfoVO.getContent().split("\n");
             for (String paragraph : contents) {
-                PdfUtil.setPdfMainBody(paragraph.replace((char) 12288, ' ').replace((char) 160, ' ').trim(), document, Element.ALIGN_LEFT, 20, 0);
+                PdfUtil.setPdfParagraph(paragraph.replace((char) 12288, ' ').replace((char) 160, ' ').trim(), document, FONT_SIZE_CONTENT, Element.ALIGN_LEFT, FONT_SIZE_CONTENT * 2, 0);
             }
             //设置落款人员
             for (String member : docInfoVO.getMemberList()) {
-                PdfUtil.setPdfMainBody(member, document, Element.ALIGN_RIGHT, 0, 0);
+                PdfUtil.setPdfParagraph(member, document, FONT_SIZE_CONTENT, Element.ALIGN_RIGHT, 0, 0);
             }
-            //设置落款日期
-            PdfUtil.setPdfMainBody(docInfoVO.getChineseDate(), document, Element.ALIGN_RIGHT, 0, 0);
+            PdfUtil.setPdfParagraph(docInfoVO.getChineseDate(), document, FONT_SIZE_CONTENT, Element.ALIGN_RIGHT, 0, 0);  // 设置落款日期
 
             document.close();
             writer.close();
@@ -82,26 +86,21 @@ public class EditorServiceImpl implements EditorService {
         try {
             String wordPathName = TEMPORARY_PATH + UUID.randomUUID().toString().replaceAll("-", "") + ".docx";
 
-            //设置法院名
-            WordUtil.createTitle(docInfoVO.getCourtName(), document, 20, "宋体");
-            //设置文书名字
-            WordUtil.createTitle(docInfoVO.getName(), document, 25, "宋体");
-            //设置案号
-            WordUtil.createParagraph(docInfoVO.getNumber(), document, ParagraphAlignment.RIGHT, 0, 15, "仿宋");
-            //设置正文
+            WordUtil.createParagraph(docInfoVO.getCourtName(), document, ParagraphAlignment.CENTER, FONT_SIZE_COURT_NAME, 0, FONT_FAMILY_TITLE);  // 设置法院名
+            WordUtil.createParagraph(docInfoVO.getName(), document, ParagraphAlignment.CENTER, FONT_SIZE_NAME, 0, FONT_FAMILY_TITLE);  // 设置文书名字
+            WordUtil.createParagraph(docInfoVO.getNumber(), document, ParagraphAlignment.RIGHT, FONT_SIZE_CONTENT, 0, FONT_FAMILY_CONTENT);  // 设置案号
+            // 设置正文
             String[] contents = docInfoVO.getContent().split("\n");
             for (String para : contents) {
-                WordUtil.createParagraph(para, document, ParagraphAlignment.BOTH, 550, 15, "仿宋");
+                WordUtil.createParagraph(para, document, ParagraphAlignment.BOTH, FONT_SIZE_CONTENT, 550, FONT_FAMILY_CONTENT);
             }
-            //设置落款人员
+            // 设置落款人员
             for (String member : docInfoVO.getMemberList()) {
-                WordUtil.createParagraph(member, document, ParagraphAlignment.RIGHT, 0, 15, "仿宋");
+                WordUtil.createParagraph(member, document, ParagraphAlignment.RIGHT, FONT_SIZE_CONTENT, 0, FONT_FAMILY_CONTENT);
             }
-            //设置落款日期
-            WordUtil.createParagraph(docInfoVO.getChineseDate(), document, ParagraphAlignment.RIGHT, 0, 15, "仿宋");
+            WordUtil.createParagraph(docInfoVO.getChineseDate(), document, ParagraphAlignment.RIGHT, FONT_SIZE_CONTENT, 0, FONT_FAMILY_CONTENT);  // 设置落款日期
 
-            WordUtil.saveDocument(document, wordPathName);
-
+            WordUtil.saveDocument(document, wordPathName);  // 保存文件
             return wordPathName;
         } catch (Exception e) {
             e.printStackTrace();

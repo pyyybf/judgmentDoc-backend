@@ -40,99 +40,35 @@ public class PdfUtil {
     }
 
     /**
-     * 设置标题内容
-     *
-     * @param title    标题文本
-     * @param document 文档
-     * @throws Exception 异常
-     */
-    public static void setPdfTitle(String title, Document document) throws Exception {
-        Paragraph paragraph = new Paragraph(title, getPdfChineseFont(0));
-        paragraph.setAlignment(Element.ALIGN_CENTER);
-        paragraph.setSpacingAfter(2);
-        document.add(paragraph);
-    }
-
-    /**
-     * 设置正文内容
+     * 设置一段内容
      *
      * @param text            正文内容
      * @param document        文档
+     * @param fontSize        字体大小
      * @param alignment       对齐方式
      * @param firstLineIndent 首行缩进
      * @param spacingAfter    段后间隔
      * @throws Exception 异常
      */
-    public static void setPdfMainBody(String text, Document document, int alignment, int firstLineIndent, int spacingAfter) throws Exception {
-        Paragraph lsh = new Paragraph(text, getPdfChineseFont(1));
-        lsh.setAlignment(alignment);
-        lsh.setFirstLineIndent(firstLineIndent);
-        lsh.setSpacingAfter(spacingAfter);
-        document.add(lsh);
-    }
-
-    /**
-     * 设置表格内容，并将表格加入文档中
-     *
-     * @param dates    数据
-     * @param document 文档
-     * @param table    表格
-     * @throws Exception 异常
-     */
-    public static void setPdfTableContent(Object[][] dates, Document document, PdfPTable table) throws Exception {
-        for (int i = 0; i < dates.length; i++) {
-            for (int j = 0; j < dates[i].length; j++) {
-                //表格的单元格
-                PdfPCell pdfCell = new PdfPCell();
-                //设置表格行高
-                if (i > 0 && i < 3) {
-                    pdfCell.setMinimumHeight(50);
-                } else {
-                    pdfCell.setMinimumHeight(25);
-                }
-                Paragraph paragraph = new Paragraph(dates[i][j] + "", getPdfChineseFont(1));
-                pdfCell.setPhrase(paragraph);
-
-                setCellStyle(pdfCell);
-                table.addCell(pdfCell);
-            }
-        }
-
-        document.add(table);
-    }
-
-    /**
-     * 设置表格单元格样式
-     *
-     * @param pdfCell 单元格对象
-     */
-    public static void setCellStyle(PdfPCell pdfCell) {
-        pdfCell.setHorizontalAlignment(Element.ALIGN_CENTER);
-        pdfCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-        pdfCell.setBackgroundColor(new BaseColor(0xdd7e6b));
-        pdfCell.setBorderWidthTop(0.1f);
-        pdfCell.setBorderWidthBottom(0.1f);
-        pdfCell.setBorderWidthLeft(0.1f);
-        pdfCell.setBorderWidthRight(0.1f);
+    public static void setPdfParagraph(String text, Document document, int fontSize, int alignment, int firstLineIndent, int spacingAfter) throws Exception {
+        Paragraph paragraph = new Paragraph(text, getPdfChineseFont(fontSize));
+        paragraph.setAlignment(alignment);
+        paragraph.setFirstLineIndent(firstLineIndent);
+        paragraph.setSpacingAfter(spacingAfter);
+        document.add(paragraph);
     }
 
     /**
      * 设置pdf字体及大小
      *
-     * @param type 标题或者内容 0-标题 1-内容
+     * @param size 字体大小
      * @return 字体
      * @throws Exception 异常
      */
-    public static Font getPdfChineseFont(int type) throws Exception {
+    public static Font getPdfChineseFont(int size) throws Exception {
         // 使用系统字体
         BaseFont bfChinese = BaseFont.createFont(FONT_SIMSUN, BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
-        Font font;
-        if (type == 1) {
-            font = new Font(bfChinese, 10, Font.NORMAL);
-        } else {
-            font = new Font(bfChinese, 14, Font.BOLD);
-        }
-        return font;
+        return new Font(bfChinese, size, Font.NORMAL);
     }
 
 }

@@ -29,42 +29,24 @@ public class WordUtil {
     }
 
     /**
-     * 写入新标题段落
-     *
-     * @param text       文本内容
-     * @param document   文档内容
-     * @param fontSize   字体大小
-     * @param fontFamily 字体
-     */
-    public static void createTitle(String text, XWPFDocument document, int fontSize, String fontFamily) {
-        XWPFParagraph titleParagraph = document.createParagraph(); //标题段落
-        titleParagraph.setAlignment(ParagraphAlignment.CENTER);
-        XWPFRun run = titleParagraph.createRun();
-        run.setText(text);
-        run.setFontSize(fontSize);
-        CTFonts font = run.getCTR().addNewRPr().addNewRFonts();
-        font.setEastAsia(fontFamily);
-    }
-
-    /**
      * 写入新段落
      *
      * @param text            文本内容
      * @param document        文档
      * @param alignment       对齐方式
-     * @param firstLineIndent 首行缩进
      * @param fontSize        字体大小
+     * @param firstLineIndent 首行缩进
      * @param fontFamily      字体
      */
-    public static void createParagraph(String text, XWPFDocument document, ParagraphAlignment alignment, int firstLineIndent, int fontSize, String fontFamily) {
-        XWPFParagraph paragraph = document.createParagraph(); //段落
-        paragraph.setAlignment(alignment); //对齐
-        paragraph.setIndentationFirstLine(firstLineIndent);
-        XWPFRun run = paragraph.createRun(); //文本对象
-        run.setText(text); //设置内容
-        run.setFontSize(fontSize); //字体大小
+    public static void createParagraph(String text, XWPFDocument document, ParagraphAlignment alignment, int fontSize, int firstLineIndent, String fontFamily) {
+        XWPFParagraph paragraph = document.createParagraph();  // 段落
+        paragraph.setAlignment(alignment);  // 对齐
+        paragraph.setIndentationFirstLine(firstLineIndent);  // 首行缩进
+        XWPFRun run = paragraph.createRun();  // 文本对象
+        run.setText(text);  // 设置内容
+        run.setFontSize(fontSize);  // 字体大小
         CTFonts font = run.getCTR().addNewRPr().addNewRFonts();
-        font.setEastAsia(fontFamily); //字体
+        font.setEastAsia(fontFamily);  // 字体
     }
 
 }
