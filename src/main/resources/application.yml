@@ -10,7 +10,7 @@ server:
   port: 8001
 
 mybatis:
-  mapper-locations: classpath:dataImpl/*Mapper.xml
+  mapper-locations: classpath:dataImpl/*MapperImpl.xml
   configuration:
     map-underscore-to-camel-case: true
 
