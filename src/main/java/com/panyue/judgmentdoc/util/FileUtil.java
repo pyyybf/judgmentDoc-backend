@@ -19,7 +19,7 @@ public class FileUtil {
      * @throws Exception 异常
      */
     public static void returnStream(HttpServletResponse response, String pathName) throws Exception {
-        String suffix = pathName.substring(pathName.lastIndexOf(".") + 1);
+        String suffix = pathName.substring(pathName.lastIndexOf(".") + 1);  // 文件名后缀
         switch (suffix) {
             case "pdf":
                 response.setContentType("application/pdf");
